@@ -5,7 +5,11 @@ import json
 import os
 from datetime import datetime, timedelta
 
-HABIT_DATA_FILE = '/home/antunovic/Dokumenti/habit_data.json'
+
+USER_HOME = os.path.expanduser("~")
+APP_DIR = os.path.join(USER_HOME, ".hibi")
+os.makedirs(APP_DIR, exist_ok=True)
+HABIT_DATA_FILE = os.path.join(APP_DIR, "habit_data.json")
 
 # Function to load habit data from the JSON file
 def load_habit_data():
@@ -13,12 +17,11 @@ def load_habit_data():
         with open(HABIT_DATA_FILE, 'r') as file:
             return json.load(file)
     except FileNotFoundError:
-        # If the file doesn't exist, return an empty habits dictionary
+        # Create an empty dictionary if the file doesn't exist
         return {}
     except Exception as e:
         print(f"Error loading JSON file: {e}")
         return {}  # Return an empty habits dictionary in case of error
-
 
 # Function to save habit data to the JSON file
 def save_habit_data(habits):
