@@ -1,6 +1,6 @@
 # Hibi
 
-Hibi is CLI habit tracker
+Hibi is a CLI habit tracker
 
 ## Getting Started
 
