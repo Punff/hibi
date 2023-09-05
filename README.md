@@ -47,13 +47,13 @@ Hibi is a CLI habit tracker
     hibi done "Your Habit Name"
     ```
 
-To view your habits and their statuses:
+- To view your habits and their statuses:
 
     ```
     hibi show
     ```
 
-To delete a habit:
+- To delete a habit:
 
     ```
     hibi delete "Your Habit Name"
