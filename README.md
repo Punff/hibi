@@ -2,8 +2,6 @@
 
 Hibi is a CLI habit tracker
 
-## Getting Started
-
 ### Dependencies
 
 - Python 3
