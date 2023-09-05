@@ -17,19 +17,19 @@ Hibi is a CLI habit tracker
 
 2. Navigate to the project directory:
 
-    ```shell
+    ```
     cd hibi
     ```
 
 3. Give permisson to the install scriptI'll fix that later):
 
-    ```shell
+    ```
     chmod +x install.sh
     ```
 
 4. Run the installation script to set up Hibi:
 
-    ```shell
+    ```
     ./install.sh
     ```
 
