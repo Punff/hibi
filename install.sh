@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Specify the path to your Python script
-PY_SCRIPT_PATH="/home/antunovic/hibi.py"
+# Specify the script name (assuming it's 'hibi.py')
+SCRIPT_NAME="hibi.py"
 
 # Check if Python3 is installed
 if ! command -v python3 &> /dev/null; then
@@ -12,6 +12,18 @@ fi
 # Check if figlet is installed
 if ! command -v figlet &> /dev/null; then
     echo "Figlet is required but not found. Please install Figlet."
+    exit 1
+fi
+
+# Locate the path to the user's home directory
+USER_HOME="$HOME"
+
+# Specify the full path to the script
+PY_SCRIPT_PATH="$USER_HOME/$SCRIPT_NAME"
+
+# Check if the script file exists
+if [ ! -f "$PY_SCRIPT_PATH" ]; then
+    echo "The script file '$SCRIPT_NAME' does not exist in the user's home directory."
     exit 1
 fi
 
@@ -26,23 +38,23 @@ chmod +x hibi.sh
 
 # Function to add $HOME/bin to PATH
 add_to_path() {
-    if [[ ":$PATH:" != *":$HOME/bin:"* ]]; then
-        echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc
-        source ~/.bashrc
+    if [[ ":$PATH:" != *":$USER_HOME/bin:"* ]]; then
+        echo 'export PATH="$USER_HOME/bin:$PATH"' >> "$USER_HOME/.bashrc"
+        source "$USER_HOME/.bashrc"
     fi
 }
 
-# Check if $HOME/bin is in PATH, and add it if necessary
-if [[ ":$PATH:" != *":$HOME/bin:"* ]]; then
-    echo "\$HOME/bin is not in your PATH. Attempting to add it..."
-    mkdir -p $HOME/bin
+# Check if $USER_HOME/bin is in PATH, and add it if necessary
+if [[ ":$PATH:" != *":$USER_HOME/bin:"* ]]; then
+    echo "\$USER_HOME/bin is not in your PATH. Attempting to add it..."
+    mkdir -p "$USER_HOME/bin"
     add_to_path
 fi
 
 # Create a symbolic link if the script file exists
 if [ -f hibi.sh ]; then
-    ln -s "$(pwd)/hibi.sh" $HOME/bin/hibi
-    echo "Symbolic link 'hibi' created in \$HOME/bin."
+    ln -s "$(pwd)/hibi.sh" "$USER_HOME/bin/hibi"
+    echo "Symbolic link 'hibi' created in \$USER_HOME/bin."
     echo "Installation completed. You can now run 'hibi <command>' to use your script."
 else
     echo "The script file 'hibi.sh' is missing. Please make sure it exists in the current directory."
