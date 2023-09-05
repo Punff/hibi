@@ -12,9 +12,13 @@ def load_habit_data():
     try:
         with open(HABIT_DATA_FILE, 'r') as file:
             return json.load(file)
+    except FileNotFoundError:
+        # If the file doesn't exist, return an empty habits dictionary
+        return {}
     except Exception as e:
         print(f"Error loading JSON file: {e}")
         return {}  # Return an empty habits dictionary in case of error
+
 
 # Function to save habit data to the JSON file
 def save_habit_data(habits):
