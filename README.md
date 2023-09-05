@@ -1,0 +1,2 @@
+# hibi
+CLI habit tracker
