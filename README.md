@@ -35,13 +35,13 @@ Hibi is a CLI habit tracker
 
 ### Usage
 
-To add a new habit:
+- To add a new habit:
 
     ```
     hibi add "Your Habit Name"
     ```
 
-To complete a habit for the day:
+- To complete a habit for the day:
 
     ```
     hibi done "Your Habit Name"
