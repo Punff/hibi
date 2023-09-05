@@ -35,25 +35,25 @@ Hibi is a CLI habit tracker
 
 ### Usage
 
-- To add a new habit:
+To add a new habit:
 
     ```shell
     hibi add "Your Habit Name"
     ```
 
-- To complete a habit for the day:
+To complete a habit for the day:
 
     ```shell
     hibi done "Your Habit Name"
     ```
 
-- To view your habits and their statuses:
+To view your habits and their statuses:
 
     ```shell
     hibi show
     ```
 
-- To delete a habit:
+To delete a habit:
 
     ```shell
     hibi delete "Your Habit Name"
