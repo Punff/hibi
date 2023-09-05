@@ -23,7 +23,7 @@ Hibi is a CLI habit tracker
     cd hibi
     ```
 
-3. Make the install script executable(I'll fix that later):
+3. Give permisson to the install scriptI'll fix that later):
 
     ```shell
     chmod +x install.sh
