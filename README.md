@@ -21,7 +21,7 @@ Hibi is a CLI habit tracker
     cd hibi
     ```
 
-3. Give permisson to the install scriptI'll fix that later):
+3. Give permisson to the install script(I'll fix this later):
 
     ```
     chmod +x install.sh
