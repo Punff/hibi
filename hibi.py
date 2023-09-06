@@ -1,11 +1,10 @@
-
 import click
 import subprocess
 import json
 import os
 from datetime import datetime, timedelta
 
-
+# Dynamically determine save file location
 USER_HOME = os.path.expanduser("~")
 APP_DIR = os.path.join(USER_HOME, ".hibi")
 os.makedirs(APP_DIR, exist_ok=True)
@@ -17,11 +16,11 @@ def load_habit_data():
         with open(HABIT_DATA_FILE, 'r') as file:
             return json.load(file)
     except FileNotFoundError:
-        # Create an empty dictionary if the file doesn't exist
+        click.echo('Creating new save file!')
         return {}
     except Exception as e:
         print(f"Error loading JSON file: {e}")
-        return {}  # Return an empty habits dictionary in case of error
+        return {}
 
 # Function to save habit data to the JSON file
 def save_habit_data(habits):
@@ -34,7 +33,7 @@ def save_habit_data(habits):
 # Create or load the habit data
 habits = load_habit_data()
 
-# Command-line interface using Click
+# CLI interface
 @click.group()
 def cli():
     pass
@@ -49,7 +48,6 @@ def reset_completed_today():
         if last_completed:
             last_completed_date = datetime.strptime(last_completed, '%Y-%m-%d')
             
-            # Calculate the difference in days between today and last_completed_date
             days_difference = (today - last_completed_date).days
             
             if days_difference > 1:
@@ -85,13 +83,11 @@ def show():
         streak = habit_data['streak']
         completed_today = "Yes" if habit_data['completed_today'] else "No"
 
-        # Center the streak column with additional padding
         table += f"\n{habit_name.ljust(15)} {str(streak).center(6)} {completed_today.rjust(13)}"
 
     result_lines = logo_padded.split('\n')
     table_lines = table.split('\n')
 
-    # Ensure logo and table have the same number of lines
     while len(result_lines) < len(table_lines):
         result_lines.append(' ' * max_logo_width)
 
@@ -128,7 +124,7 @@ def done(habit_name):
             habits[habit_name]['last_completed'] = datetime.today().strftime('%Y-%m-%d')
             click.echo(f'{habit_name} completed. Streak: {habits[habit_name]["streak"]}')
 
-            save_habit_data(habits)  # Save the updated habits dictionary
+            save_habit_data(habits)
         else:
             click.echo(f'{habit_name} already completed today!')
     else:
@@ -140,7 +136,7 @@ def done(habit_name):
 def delete(habit_name):
     if habit_name in habits:
         del habits[habit_name]
-        save_habit_data(habits)  # Save the updated habits dictionary
+        save_habit_data(habits)
         click.echo(f'Habit "{habit_name}" deleted.')
     else:
         click.echo(f"{habit_name} doesn't exist!")
