@@ -12,7 +12,7 @@ Hibi is a CLI habit tracker
 1. Clone the GitHub repository to your local machine:
 
     ```shell
-    git clone https://github.com/your-username/hibi.git
+    git clone https://github.com/Punff/hibi.git
     ```
 
 2. Navigate to the project directory:
